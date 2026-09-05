@@ -1,140 +1,490 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#fff4f8" />
-  <title>For Marina ♡</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fff5f7" />
+  <title>A tiny corner of the internet for Marina</title>
   <style>
-    :root{
-      --bg1:#fff8f4;
-      --bg2:#ffeef6;
-      --card:rgba(255,255,255,.82);
-      --text:#45383e;
-      --muted:#7c6871;
-      --pink:#dd7898;
-      --pink2:#f0a6bd;
-      --shadow:0 24px 70px rgba(137,77,99,.18);
+    :root {
+      --bg1: #fff7fb;
+      --bg2: #fff1f5;
+      --bg3: #fff8ef;
+      --card: rgba(255, 255, 255, 0.82);
+      --text: #4d3742;
+      --muted: #806671;
+      --pink: #ef8fb0;
+      --pink-dark: #cc6288;
+      --line: rgba(204, 98, 136, 0.18);
+      --shadow: 0 20px 60px rgba(160, 89, 119, 0.18);
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      min-height:100vh;
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color:var(--text);
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-rounded, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
       background:
-        radial-gradient(circle at 20% 20%,rgba(255,255,255,.85),transparent 30%),
-        linear-gradient(135deg,var(--bg1),var(--bg2));
-      display:grid;
-      place-items:center;
-      overflow:hidden;
-      padding:24px;
+        radial-gradient(circle at top left, rgba(255, 215, 230, 0.85), transparent 30%),
+        radial-gradient(circle at top right, rgba(255, 236, 210, 0.9), transparent 28%),
+        linear-gradient(135deg, var(--bg1), var(--bg2) 50%, var(--bg3));
+      overflow-x: hidden;
     }
-    .wrap{width:min(720px,100%);position:relative}
-    .card{
-      position:relative;
-      z-index:2;
-      text-align:center;
-      background:var(--card);
-      backdrop-filter:blur(14px);
-      border:1px solid rgba(255,255,255,.9);
-      border-radius:30px;
-      box-shadow:var(--shadow);
-      padding:44px 28px 34px;
+
+    .sparkles, .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
     }
-    .tiny{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--pink);font-weight:800;margin-bottom:12px}
-    h1{font-size:clamp(2.3rem,7vw,4.6rem);line-height:.95;margin:0 0 20px;font-family:Georgia,"Times New Roman",serif;font-weight:500}
-    h1 span{color:var(--pink)}
-    .main{font-size:clamp(1rem,2.4vw,1.18rem);line-height:1.75;max-width:580px;margin:0 auto;color:var(--muted)}
-    .main strong{color:var(--text)}
-    .button{
-      margin-top:28px;
-      border:0;
-      border-radius:999px;
-      padding:15px 24px;
-      font-size:1rem;
-      font-weight:800;
-      color:white;
-      background:linear-gradient(135deg,var(--pink),var(--pink2));
-      box-shadow:0 12px 28px rgba(221,120,152,.32);
-      cursor:pointer;
-      transition:.2s ease;
+
+    .sparkle, .heart {
+      position: absolute;
+      opacity: 0.7;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
     }
-    .button:hover{transform:translateY(-2px) scale(1.01)}
-    .button:active{transform:scale(.98)}
-    #smile{
-      min-height:66px;
-      margin:22px auto 0;
-      max-width:520px;
-      padding:16px 18px;
-      border-radius:20px;
-      background:rgba(255,255,255,.65);
-      color:var(--text);
-      line-height:1.55;
-      display:grid;
-      place-items:center;
-      opacity:0;
-      transform:translateY(8px);
-      transition:.28s ease;
+
+    .sparkle {
+      color: rgba(255,255,255,0.95);
+      font-size: 14px;
+      animation-name: floatSparkle;
     }
-    #smile.show{opacity:1;transform:translateY(0)}
-    .footer{margin-top:22px;color:#9a818b;font-size:.9rem}
-    .heart{position:absolute;color:rgba(221,120,152,.35);font-size:28px;animation:float 6s ease-in-out infinite;user-select:none}
-    .h1{left:-10px;top:6%;animation-delay:0s}.h2{right:3%;top:-5%;font-size:20px;animation-delay:1s}.h3{left:8%;bottom:-7%;font-size:19px;animation-delay:2s}.h4{right:-8px;bottom:10%;font-size:35px;animation-delay:3s}
-    @keyframes float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-14px) rotate(6deg)}}
-    .spark{position:fixed;pointer-events:none;font-size:18px;animation:pop 900ms ease forwards}
-    @keyframes pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.4)}35%{opacity:1}100%{opacity:0;transform:translate(-50%,-120px) scale(1.5) rotate(18deg)}}
-    @media(max-width:520px){.card{padding:38px 20px 28px;border-radius:25px}.footer{font-size:.82rem}.heart{display:none}}
+
+    .heart {
+      color: rgba(239, 143, 176, 0.55);
+      font-size: 18px;
+      animation-name: floatHeart;
+    }
+
+    @keyframes floatHeart {
+      from { transform: translateY(110vh) scale(0.8) rotate(0deg); opacity: 0; }
+      10% { opacity: .7; }
+      to { transform: translateY(-15vh) scale(1.2) rotate(30deg); opacity: 0; }
+    }
+
+    @keyframes floatSparkle {
+      from { transform: translateY(105vh) translateX(0) scale(.8); opacity: 0; }
+      15% { opacity: .8; }
+      to { transform: translateY(-10vh) translateX(18px) scale(1.2); opacity: 0; }
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      width: min(920px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 48px 0 70px;
+    }
+
+    .top-pill {
+      width: fit-content;
+      margin: 0 auto 18px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(255,255,255,0.8);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(143, 90, 113, 0.10);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .card {
+      position: relative;
+      background: var(--card);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: 34px 24px 26px;
+      overflow: hidden;
+    }
+
+    .card::before,
+    .card::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(8px);
+      opacity: .55;
+    }
+
+    .card::before {
+      width: 180px;
+      height: 180px;
+      background: rgba(255, 221, 234, 0.75);
+      top: -70px;
+      right: -35px;
+    }
+
+    .card::after {
+      width: 130px;
+      height: 130px;
+      background: rgba(255, 242, 213, 0.75);
+      bottom: -35px;
+      left: -25px;
+    }
+
+    .mini-hearts {
+      text-align: center;
+      font-size: 1.3rem;
+      letter-spacing: 8px;
+      margin-bottom: 10px;
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: clamp(2.35rem, 7vw, 4.4rem);
+      line-height: 1.02;
+      margin: 6px 0 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin: 0 auto 24px;
+      max-width: 620px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .message {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 1.08rem;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 28px 0 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 14px 20px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+    }
+
+    button:hover { transform: translateY(-2px) scale(1.01); }
+    button:active { transform: translateY(0) scale(.98); }
+
+    .primary {
+      background: linear-gradient(180deg, #ffb4ce, #ef8fb0);
+      color: white;
+      box-shadow: 0 14px 28px rgba(204, 98, 136, .28);
+    }
+
+    .secondary {
+      background: rgba(255,255,255,.85);
+      color: var(--pink-dark);
+      border: 1px solid rgba(204, 98, 136, .15);
+      box-shadow: 0 10px 26px rgba(164, 110, 133, .10);
+    }
+
+    .bubble {
+      position: relative;
+      z-index: 1;
+      max-width: 690px;
+      margin: 12px auto 0;
+      background: rgba(255,255,255,0.87);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 18px 18px;
+      box-shadow: 0 12px 25px rgba(160, 89, 119, 0.08);
+      text-align: center;
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tile {
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(255,255,255,.86);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 10px 24px rgba(150, 92, 114, 0.08);
+    }
+
+    .tile h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .tile p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.96rem;
+    }
+
+    .reasons {
+      margin-top: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.83));
+      border: 1px solid rgba(255,255,255,.85);
+      border-radius: 24px;
+      padding: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .reasons-title {
+      margin: 0 0 14px;
+      text-align: center;
+      font-size: 1.15rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.9);
+      border: 1px solid rgba(204, 98, 136, .14);
+      color: var(--text);
+      box-shadow: 0 8px 18px rgba(161, 104, 126, .08);
+      font-size: .95rem;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: .98rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tiny {
+      text-align: center;
+      margin-top: 18px;
+      color: #987685;
+      font-size: .92rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .signature {
+      margin-top: 12px;
+      font-weight: 700;
+      color: var(--pink-dark);
+    }
+
+    .hidden-note {
+      margin-top: 16px;
+      padding: 16px;
+      background: rgba(255, 248, 251, 0.95);
+      border: 1px dashed rgba(204, 98, 136, .3);
+      border-radius: 20px;
+      text-align: center;
+      display: none;
+    }
+
+    .show { display: block; }
+
+    @media (max-width: 760px) {
+      .wrap { padding-top: 28px; }
+      .card { padding: 26px 16px 20px; border-radius: 24px; }
+      .grid { grid-template-columns: 1fr; }
+      .message { font-size: 1rem; }
+      .bubble { font-size: .98rem; min-height: 92px; }
+      button { width: 100%; }
+      .button-row { gap: 10px; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="heart h1">♡</div><div class="heart h2">♥</div><div class="heart h3">♡</div><div class="heart h4">♥</div>
-    <main class="card">
-      <div class="tiny">a tiny corner of the internet for you</div>
-      <h1>Hey, <span>Marina.</span></h1>
-      <p class="main">
-        I know this week has been a lot. You <strong>do not</strong> have to talk about it, explain it, or pretend you're okay.
-        I just wanted to make you something small whose only job is to hopefully steal one little smile from you.
-      </p>
-      <button class="button" id="btn">I could use a tiny smile ♡</button>
-      <div id="smile" aria-live="polite"></div>
-      <div class="footer">No reply needed. Really. Just wanted you to know someone is thinking about you. ♡</div>
-    </main>
-  </div>
+  <div class="hearts" id="hearts"></div>
+  <div class="sparkles" id="sparkles"></div>
+
+  <main class="wrap">
+    <div class="top-pill">a tiny cute corner of the internet made just for you ♡</div>
+
+    <section class="card">
+      <div class="mini-hearts">♡ ✿ ♡ ✿ ♡</div>
+      <h1>Hey, Marina.</h1>
+      <p class="subtitle">This page has exactly one job: to be soft, sweet, and hopefully steal at least one tiny smile from you.</p>
+
+      <div class="message">
+        I know this week has been heavy. You don’t have to explain it, talk about it, or pretend you’re okay for anybody.
+        I just wanted to make you something small that feels a little warm and a little cute, so you have one tiny reminder that you matter,
+        you’re cared about, and you don’t have to carry everything alone.
+      </div>
+
+      <div class="button-row">
+        <button class="primary" id="smileBtn">I could use a tiny smile ♡</button>
+        <button class="secondary" id="noteBtn">open a tiny note ✿</button>
+      </div>
+
+      <div class="bubble" id="bubble">Press the button whenever you want a small dose of cute energy.</div>
+
+      <div class="hidden-note" id="hiddenNote">
+        Just in case today is being rude to you: you are still lovely, still important, and still deserve gentleness.
+      </div>
+
+      <div class="grid">
+        <div class="tile">
+          <h3>☁ little reminder</h3>
+          <p>You do not have to be in a perfect mood to be loved, cared about, or thought of fondly.</p>
+        </div>
+        <div class="tile">
+          <h3>🫶 emergency softness</h3>
+          <p>If your week has been mean, this is your official permission slip to rest, breathe, and be a little babied.</p>
+        </div>
+        <div class="tile">
+          <h3>🌷 important news</h3>
+          <p>Even on messy days, you still bring a lot of light with you. Yes, this is me being annoyingly sincere.</p>
+        </div>
+      </div>
+
+      <div class="reasons">
+        <h2 class="reasons-title">tiny reasons you’re easy to care about ♡</h2>
+        <div class="chips">
+          <span class="chip">your smile</span>
+          <span class="chip">your heart</span>
+          <span class="chip">your energy</span>
+          <span class="chip">the way you matter to people</span>
+          <span class="chip">your cute little existence</span>
+          <span class="chip">because you’re you</span>
+        </div>
+      </div>
+
+      <p class="footer-note">No reply needed. Really. This was only made to make your day feel a little less heavy.</p>
+      <div class="tiny">made with care, soft colors, and a mildly unreasonable amount of affection ♡
+        <div class="signature">- from someone thinking about you</div>
+      </div>
+    </section>
+  </main>
+
   <script>
     const messages = [
-      "Official reminder: one bad week does not get to decide your whole story.",
-      "You are allowed to have low-battery days. Even phones get to sit at 3% and do absolutely nothing useful.",
-      "Tiny prescription for today: water, food, one good song, and being at least 12% nicer to yourself.",
-      "In case nobody told you today: you are still very much worth caring about on the days you don't feel like yourself.",
-      "I hope something stupidly small makes you laugh today. Like a dog carrying a stick way too big for it.",
-      "No fixing. No questions. No motivational speech. Just me quietly rooting for you over here.",
-      "You don't have to be okay today. You just have to make it through today. Tomorrow can handle itself later.",
-      "Consider this your legally binding permission slip to be cozy and ignore unnecessary nonsense for a while."
+      "You deserve at least one genuinely soft moment today, so here’s one.",
+      "Tiny reminder: bad weeks do not get to decide how lovely you are.",
+      "If I could fight your stress for you, I would at least yell at it dramatically.",
+      "You are way too cute to be carrying this much stress around.",
+      "This is a formal notice that you deserve snacks, rest, and something comforting.",
+      "If today has been rude to you, I’m officially against it.",
+      "You don’t need to have the right words. Existing is enough today.",
+      "A small fact: the world is better with you in it. I checked.",
+      "Consider this your soft little reminder that someone cares about you a lot.",
+      "If nothing else, let this page sit here and be gentle with you for a minute.",
+      "You are still you underneath the stress, and that version of you is pretty wonderful.",
+      "Sending you a tiny internet hug with absolutely no pressure attached to it."
     ];
-    let last = -1;
-    const btn = document.getElementById('btn');
-    const box = document.getElementById('smile');
-    btn.addEventListener('click', (e) => {
-      let i;
-      do i = Math.floor(Math.random()*messages.length); while(i===last && messages.length>1);
-      last = i;
-      box.classList.remove('show');
-      setTimeout(()=>{box.textContent=messages[i];box.classList.add('show')},90);
-      for(let n=0;n<8;n++){
-        const s=document.createElement('div');
-        s.className='spark';
-        s.textContent=n%2?'♡':'♥';
-        s.style.left=(e.clientX + (Math.random()*110-55))+'px';
-        s.style.top=(e.clientY + (Math.random()*30-15))+'px';
-        s.style.color=n%2?'#df7899':'#f0a6bd';
-        s.style.animationDelay=(Math.random()*150)+'ms';
-        document.body.appendChild(s);
-        setTimeout(()=>s.remove(),1100);
+
+    const bubble = document.getElementById('bubble');
+    const smileBtn = document.getElementById('smileBtn');
+    const noteBtn = document.getElementById('noteBtn');
+    const hiddenNote = document.getElementById('hiddenNote');
+    const hearts = document.getElementById('hearts');
+    const sparkles = document.getElementById('sparkles');
+
+    function spawnBackground() {
+      for (let i = 0; i < 18; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.textContent = Math.random() > 0.5 ? '♡' : '♥';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (10 + Math.random() * 12) + 's';
+        heart.style.animationDelay = (Math.random() * 12) + 's';
+        heart.style.fontSize = (14 + Math.random() * 16) + 'px';
+        hearts.appendChild(heart);
       }
-      btn.textContent='another one ♡';
+
+      for (let i = 0; i < 18; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.textContent = Math.random() > 0.5 ? '✦' : '✧';
+        sparkle.style.left = Math.random() * 100 + 'vw';
+        sparkle.style.animationDuration = (12 + Math.random() * 10) + 's';
+        sparkle.style.animationDelay = (Math.random() * 10) + 's';
+        sparkle.style.fontSize = (12 + Math.random() * 8) + 'px';
+        sparkles.appendChild(sparkle);
+      }
+    }
+
+    function burst() {
+      for (let i = 0; i < 16; i++) {
+        const el = document.createElement('div');
+        el.textContent = Math.random() > 0.4 ? '♡' : '✿';
+        el.style.position = 'fixed';
+        el.style.left = '50%';
+        el.style.top = '58%';
+        el.style.transform = 'translate(-50%, -50%)';
+        el.style.pointerEvents = 'none';
+        el.style.zIndex = '3';
+        el.style.fontSize = (16 + Math.random() * 16) + 'px';
+        el.style.opacity = '1';
+        el.style.transition = 'transform 900ms ease, opacity 900ms ease';
+        document.body.appendChild(el);
+
+        const x = (Math.random() - 0.5) * 240;
+        const y = (Math.random() - 0.8) * 220;
+
+        requestAnimationFrame(() => {
+          el.style.transform = `translate(${x}px, ${y}px) scale(${0.8 + Math.random() * 1.1})`;
+          el.style.opacity = '0';
+        });
+
+        setTimeout(() => el.remove(), 950);
+      }
+    }
+
+    smileBtn.addEventListener('click', () => {
+      const pick = messages[Math.floor(Math.random() * messages.length)];
+      bubble.textContent = pick;
+      burst();
     });
+
+    noteBtn.addEventListener('click', () => {
+      hiddenNote.classList.toggle('show');
+      noteBtn.textContent = hiddenNote.classList.contains('show') ? 'hide tiny note ✿' : 'open a tiny note ✿';
+      burst();
+    });
+
+    spawnBackground();
   </script>
 </body>
 </html>
