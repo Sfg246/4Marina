@@ -3,126 +3,122 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#ffedf6">
+<meta name="theme-color" content="#ff7fb1">
 <title>For Marina ♡</title>
-<link rel="stylesheet" href="style.css">
+<style>
+:root{
+  --pink:#ff78ad;--pink2:#ff9fc7;--pink3:#ffd3e6;--hot:#df4d8b;
+  --berry:#b83d73;--ink:#533744;--muted:#8b6677;--white:rgba(255,255,255,.88);
+  --line:rgba(223,77,139,.18);--shadow:0 24px 80px rgba(183,61,115,.20)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{
+  margin:0;min-height:100vh;font-family:Inter,ui-rounded,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);
+  background:
+    radial-gradient(circle at 10% 5%,#ffc4dc 0,transparent 26%),
+    radial-gradient(circle at 92% 12%,#ffadd1 0,transparent 28%),
+    radial-gradient(circle at 50% 100%,#ffe6f0 0,transparent 34%),
+    linear-gradient(145deg,#fff6fb 0%,#ffd9e9 46%,#fff1f7 100%);
+  overflow-x:hidden
+}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.45;background-image:radial-gradient(#fff 1.3px,transparent 1.3px);background-size:22px 22px;z-index:0}
+.bg{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.float{position:absolute;bottom:-70px;color:rgba(235,79,143,.34);filter:drop-shadow(0 4px 8px rgba(188,62,116,.08));animation:up linear infinite}
+@keyframes up{to{transform:translateY(-125vh) rotate(35deg);opacity:0}}
+.wrap{position:relative;z-index:1;width:min(840px,calc(100% - 24px));margin:auto;padding:34px 0 70px}
+.pill{width:max-content;max-width:100%;margin:0 auto 14px;padding:10px 17px;border:1px solid #fff;border-radius:999px;background:rgba(255,255,255,.78);box-shadow:0 10px 28px rgba(171,68,114,.12);font-size:.88rem;color:var(--berry);text-align:center;font-weight:800}
+.card{position:relative;overflow:hidden;border:2px solid rgba(255,255,255,.93);border-radius:34px;background:linear-gradient(160deg,rgba(255,255,255,.93),rgba(255,241,248,.89));backdrop-filter:blur(16px);box-shadow:var(--shadow);padding:36px 27px 28px}
+.card:before,.card:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);opacity:.72}.card:before{width:260px;height:260px;right:-115px;top:-125px;background:#ffb7d5}.card:after{width:190px;height:190px;left:-90px;bottom:-105px;background:#ffd0e4}.card>*{position:relative;z-index:2}
+.ribbon{position:absolute!important;z-index:3!important;top:18px;right:22px;font-size:2.15rem;transform:rotate(8deg);filter:drop-shadow(0 7px 12px rgba(190,64,117,.15));animation:bob 2.8s ease-in-out infinite}.ribbon.left{right:auto;left:22px;transform:rotate(-8deg);animation-delay:.7s}@keyframes bob{50%{transform:translateY(-5px) rotate(5deg)}}
+.kicker{text-align:center;color:var(--hot);font-size:.77rem;font-weight:900;letter-spacing:.17em;text-transform:uppercase}.hearts{text-align:center;letter-spacing:8px;margin:11px 0;color:var(--pink);font-size:1.12rem;animation:pulse 2.4s ease-in-out infinite}@keyframes pulse{50%{transform:scale(1.06)}}
+h1{text-align:center;font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.8rem,8vw,5.25rem);font-weight:500;line-height:.95;margin:8px 0 15px;text-shadow:0 7px 22px rgba(215,79,137,.10)}h1 span{color:var(--hot)}
+.sub{text-align:center;max-width:660px;margin:0 auto;color:var(--muted);font-size:1.04rem;line-height:1.67}
+.letter{max-width:710px;margin:22px auto 0;padding:21px 20px;border-radius:25px;background:linear-gradient(145deg,#fff,#fff0f7);border:1px solid var(--line);box-shadow:0 12px 28px rgba(183,61,115,.08);font-size:1rem;line-height:1.76;text-align:center}.letter strong{color:var(--hot)}
+.actions{display:flex;justify-content:center;gap:11px;flex-wrap:wrap;margin:23px 0 13px}
+button{font:inherit;font-weight:850;border:0;border-radius:999px;padding:14px 20px;cursor:pointer;transition:.18s ease}
+.primary{color:white;background:linear-gradient(135deg,#e85a94,#ff94bf);box-shadow:0 13px 28px rgba(211,71,131,.32);border:1px solid rgba(255,255,255,.45)}
+.secondary{color:var(--berry);background:#fff;border:1px solid var(--line);box-shadow:0 9px 22px rgba(145,78,107,.08)}button:hover{transform:translateY(-2px) scale(1.01)}button:active{transform:scale(.98)}
+.response{max-width:660px;min-height:78px;margin:10px auto 0;border-radius:23px;padding:17px 18px;background:linear-gradient(145deg,#fff,#fff5fa);border:1px solid var(--line);display:grid;place-items:center;text-align:center;line-height:1.58;color:#694c5a;box-shadow:0 9px 22px rgba(187,65,116,.06)}.response.pop{animation:pop .32s ease}@keyframes pop{50%{transform:scale(1.025)}}
+.menuTitle{text-align:center;margin:28px 0 11px;font-size:.9rem;color:var(--berry);font-weight:900}.menu{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;max-width:690px;margin:0 auto}
+.menu button{min-height:68px;text-align:left;padding:15px 16px;border-radius:21px;background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(255,239,247,.94));border:1px solid rgba(255,255,255,.98);box-shadow:0 10px 24px rgba(167,69,111,.09);color:var(--ink);font-weight:900;position:relative;overflow:hidden}
+.menu button:after{content:"♡";position:absolute;right:12px;top:9px;color:#f3a0c1;font-size:1.15rem}.menu button span{display:block;color:var(--muted);font-weight:550;font-size:.82rem;margin-top:4px;padding-right:16px}.menu button:hover{background:#fff;box-shadow:0 13px 28px rgba(173,67,114,.14)}.menu .danger{background:linear-gradient(145deg,#ffe2ee,#fff);border:1px solid #efa7c4;color:var(--berry)}.menu .secret{grid-column:1/-1;background:linear-gradient(135deg,#ff7faf,#ffb3d0);color:#fff;border:1px solid rgba(255,255,255,.75);box-shadow:0 13px 30px rgba(208,65,127,.25)}.menu .secret span{color:#fff4f9}.menu .secret:after{color:#fff}
+.footer{text-align:center;margin-top:25px;color:#967080;font-size:.91rem;line-height:1.6}.sign{margin-top:8px;color:var(--berry);font-weight:900}.tinytease{font-size:.82rem;margin-top:7px;color:#aa8294}
+.burst{position:fixed;z-index:35;pointer-events:none;animation:burst 850ms ease forwards}@keyframes burst{to{transform:translate(var(--x),var(--y)) scale(1.65) rotate(20deg);opacity:0}}
+.modal{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(94,43,67,.34);backdrop-filter:blur(9px)}.modal.show{display:flex;animation:fadeBg .2s ease}@keyframes fadeBg{from{opacity:0}}
+.modalCard{position:relative;width:min(570px,100%);max-height:min(84vh,760px);overflow:auto;border-radius:30px;padding:29px 23px 23px;background:linear-gradient(150deg,#fff,#ffeefa);border:2px solid #fff;box-shadow:0 30px 95px rgba(102,45,71,.28);animation:modalIn .25s ease}@keyframes modalIn{from{opacity:0;transform:translateY(12px) scale(.97)}}
+.close{position:absolute;right:13px;top:12px;width:39px;height:39px;padding:0;border-radius:50%;background:#fff;color:var(--hot);border:1px solid var(--line);font-size:1.16rem;box-shadow:0 6px 15px rgba(169,67,111,.08)}
+.modalIcon{text-align:center;font-size:2.25rem;margin:2px 0 7px}.modalCard h2{text-align:center;margin:0 36px 10px;font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:2rem;color:var(--hot)}.modalBody{color:#6b4c5c;line-height:1.7;text-align:center}.modalBody p{margin:10px 0}.modalBody strong{color:var(--hot)}
+.tags{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-top:15px}.tag{padding:9px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:0 6px 16px rgba(150,78,108,.06);font-size:.9rem;color:var(--ink)}.quoteBox{margin-top:14px;padding:16px;border-radius:20px;background:#fff;border:1px solid var(--line);color:#654956;box-shadow:0 8px 18px rgba(178,66,115,.06)}.modalAction{margin-top:16px}.modalAction button{width:100%}
+.arena{position:relative;height:195px;margin-top:14px;border-radius:20px;background:repeating-linear-gradient(135deg,rgba(239,130,173,.08),rgba(239,130,173,.08) 10px,rgba(255,255,255,.66) 10px,rgba(255,255,255,.66) 20px);border:1px dashed rgba(201,79,130,.28);overflow:hidden}.runaway{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;background:#fff;color:var(--hot);border:1px solid #efabc5;box-shadow:0 9px 20px rgba(157,78,113,.13);touch-action:none}.harder{margin:12px auto 0;min-height:60px;padding:13px;border-radius:18px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;color:#694c59;line-height:1.5}.emergency{display:none;margin:13px auto 0;padding:16px;border-radius:19px;background:linear-gradient(135deg,#fff,#ffeaf4);border:1px solid #efb3ca;line-height:1.65}.emergency.show{display:block;animation:fade .35s ease}@keyframes fade{from{opacity:0;transform:translateY(7px)}}
+.secretIntro{padding:14px;border-radius:19px;background:#fff4f9;border:1px solid var(--line);margin-bottom:14px}.feelForm{text-align:left}.feelForm label{display:block;font-size:.88rem;font-weight:900;color:var(--berry);margin:12px 0 7px}.feelForm textarea{width:100%;min-height:150px;resize:vertical;border:1.5px solid #efb0ca;border-radius:18px;padding:14px 15px;background:#fff;color:var(--ink);font:inherit;line-height:1.55;outline:none;box-shadow:inset 0 2px 7px rgba(181,65,113,.04)}.feelForm textarea:focus{border-color:#e96a9d;box-shadow:0 0 0 4px rgba(239,130,173,.12)}.choiceWrap{display:grid;grid-template-columns:1fr 1fr;gap:10px}.choice{position:relative}.choice input{position:absolute;opacity:0;pointer-events:none}.choice label{margin:0;padding:13px 11px;border-radius:17px;border:1px solid var(--line);background:#fff;text-align:center;color:var(--ink);font-size:.88rem;cursor:pointer;transition:.18s}.choice input:checked+label{background:linear-gradient(135deg,#ff8cb9,#ffb7d2);color:#fff;border-color:#ff8cb9;box-shadow:0 9px 20px rgba(204,72,129,.18)}.sendBtn{width:100%;margin-top:14px}.formStatus{min-height:24px;margin-top:11px;text-align:center;font-size:.9rem;color:var(--muted)}.privacy{font-size:.78rem;color:#9a7888;text-align:center;margin-top:11px;line-height:1.45}
+@media(max-width:650px){.wrap{padding-top:24px}.card{padding:30px 15px 23px;border-radius:27px}.ribbon{font-size:1.7rem;top:15px;right:13px}.ribbon.left{left:13px}.actions button{width:100%}.menu{grid-template-columns:1fr}.menu .secret{grid-column:auto}.letter{padding:18px}.pill{font-size:.8rem}.modalCard{padding:27px 16px 19px}.modalCard h2{font-size:1.72rem}.arena{height:205px}.choiceWrap{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <div class="bg" id="bg"></div>
 <main class="wrap">
-  <div class="pill">a very pink little corner of the internet, made specifically for Marina ♡</div>
+  <div class="pill">♡ a very pink little corner of the internet made specifically for Marina ♡</div>
   <section class="card">
+    <div class="ribbon left">🎀</div><div class="ribbon">🎀</div>
     <div class="kicker">for the days that feel a little too heavy</div>
     <div class="hearts">♡ ✿ ♡ ✿ ♡</div>
     <h1>Hey, <span>Marina.</span></h1>
-    <p class="sub">You do not have to magically feel better just because you opened this. This page is only here to sit with you for a minute and maybe annoy one tiny smile out of you.</p>
-
-    <div class="letter">I know talking about how you feel is not always easy, even when you <strong>really are trying</strong>. You never owe anyone a perfect explanation. I also hope you know how much I notice the other side of you too: you are genuinely one of the sweetest people I know, and you are always there for me when I need you. We can insult each other like it is an Olympic sport and somehow end up laughing five minutes later, but underneath all of that, I care about you a lot. So when your brain is being mean to you, remember you are cared about, appreciated, and, unfortunately for you, <strong>pretty damn easy to adore.</strong></div>
-
-    <div class="actions">
-      <button class="primary" id="smileBtn">I could use a tiny smile ♡</button>
-      <button class="secondary" data-modal="noteModal">open something cute ✿</button>
-    </div>
+    <p class="sub">You do not have to magically feel better because you opened this. It is just here to sit with you for a minute and maybe annoy one tiny smile out of you.</p>
+    <div class="letter">Talking about how you feel is not always easy, even when you <strong>really are trying</strong>. You never owe anyone a perfect explanation. I just hope you remember that you are one of the sweetest people I know, you are always there for me, and underneath all our stupid insults and bullying each other for fun, <strong>I care about you a whole lot.</strong></div>
+    <div class="actions"><button class="primary" id="smileBtn">I could use a tiny smile ♡</button></div>
     <div class="response" id="response">Press the pink button. I promise the page only bites a little.</div>
-
-    <div class="pick-title">or pick whatever you need right now ♡</div>
+    <div class="menuTitle">pick whatever your heart needs right now ↓</div>
     <div class="menu">
-      <button class="menu-btn" data-modal="noteModal">✿ tiny note<span>no explaining required</span></button>
-      <button class="menu-btn" data-modal="wordsModal">☁ when words are hard<span>because trying counts too</span></button>
-      <button class="menu-btn" data-modal="reasonsModal">♡ why you matter<span>evidence, unfortunately</span></button>
-      <button class="menu-btn" data-modal="bullyModal">😈 our healthy bullying<span>peer-reviewed friendship science</span></button>
-      <button class="menu-btn" data-modal="complimentModal">🌷 emergency compliment<span>mild flirting may occur</span></button>
-      <button class="menu-btn secret" data-modal="secretModal">💌 write me a secret note<span>say it without having to say it out loud</span></button>
-      <button class="menu-btn special" data-modal="harderModal">💗 still not feeling better?<span>okay, then we try harder</span></button>
+      <button data-open="note">✿ open a tiny note<span>for when you do not want to explain anything</span></button>
+      <button data-open="words">☁ when words are hard<span>because “I don't know” is still a valid answer</span></button>
+      <button data-open="reasons">♡ reasons you are easy to care about<span>annoyingly strong evidence, unfortunately</span></button>
+      <button data-open="us">😈 our very healthy bullying<span>proof that being mean can somehow be affectionate</span></button>
+      <button data-open="flirty">🌷 emergency compliment<span>a tiny bit flirty. don't get excited.</span></button>
+      <button class="danger" data-open="still">💗 still not feeling better?<span>fine. apparently we need stronger measures.</span></button>
+      <button class="secret" data-open="secret">💌 write me a secret note<span>say it without having to say it out loud</span></button>
     </div>
-
-    <div class="footer">No reply required. No emotional essay required. You can literally look at this, call me an idiot, and continue with your day.
-      <div class="sign">from someone who cares about you a whole lot ♡</div>
-      <div class="tinytease">and yes, you are still annoying. balance is important.</div>
-    </div>
+    <div class="footer">No reply required. No emotional essay required. You can literally just look at this, call me an idiot, and continue with your day.<div class="sign">from someone who cares about you a whole lot ♡</div><div class="tinytease">and yes, you are still annoying. balance is important.</div></div>
   </section>
 </main>
-
-<div class="modal" id="noteModal" aria-hidden="true">
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="noteTitle">
-    <button class="close" data-close aria-label="Close">×</button>
-    <div class="modal-icon">✿</div><h2 id="noteTitle">a tiny note for you</h2>
-    <p class="modal-copy">You do not have to tell me what is wrong before you are ready. <strong>“I don't know,” “not right now,”</strong> or even just sitting there quietly is allowed. You have been there for me more times than you probably realize. I can be here too, even if “being here” is making you a ridiculous pink website.</p>
-  </div>
-</div>
-
-<div class="modal" id="wordsModal" aria-hidden="true">
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="wordsTitle">
-    <button class="close" data-close aria-label="Close">×</button>
-    <div class="modal-icon">☁</div><h2 id="wordsTitle">when words are hard</h2>
-    <p class="modal-copy">You do not need the perfect sentence to deserve patience. You can take your time. You can start in the middle. You can say one sentence and stop. You can change your mind. <strong>Trying counts.</strong> Silence can count too.</p>
-    <div class="quote-box">You never have to turn a complicated feeling into a neat little explanation just to make it valid.</div>
-  </div>
-</div>
-
-<div class="modal" id="reasonsModal" aria-hidden="true">
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="reasonsTitle">
-    <button class="close" data-close aria-label="Close">×</button>
-    <div class="modal-icon">♡</div><h2 id="reasonsTitle">why you are ridiculously easy to care about</h2>
-    <div class="pills">
-      <span class="chip">you always show up</span><span class="chip">you actually try</span><span class="chip">your sweet heart</span><span class="chip">your smile</span><span class="chip">our stupid insults</span><span class="chip">the way we can talk after</span><span class="chip">your cute little attitude</span><span class="chip">because you are you</span>
-    </div>
-    <div class="quote-box">You make things lighter for me more often than you probably realize.</div>
-  </div>
-</div>
-
-<div class="modal" id="bullyModal" aria-hidden="true">
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="bullyTitle">
-    <button class="close" data-close aria-label="Close">×</button>
-    <div class="modal-icon">😈</div><h2 id="bullyTitle">our very healthy bullying</h2>
-    <p class="modal-copy">We can insult each other for entertainment, talk about it afterward, and somehow come out laughing harder. So yes, I reserve the right to call you annoying. You reserve the right to return the favor. But underneath the nonsense, I hope you always know I am <strong>actually in your corner.</strong></p>
-    <div class="quote-box">You are sweet, important, cute, and still a menace. Balance.</div>
-  </div>
-</div>
-
-<div class="modal" id="complimentModal" aria-hidden="true">
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="complimentTitle">
-    <button class="close" data-close aria-label="Close">×</button>
-    <div class="modal-icon">🌷</div><h2 id="complimentTitle">emergency compliment</h2>
-    <div class="quote-box" id="complimentBox">Bad day or not, you are still painfully cute. I checked the rules.</div>
-    <div class="modal-action"><button class="primary" id="complimentBtn">give me another one ♡</button></div>
-  </div>
-</div>
-
-<div class="modal" id="secretModal" aria-hidden="true">
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="secretTitle">
-    <button class="close" data-close aria-label="Close">×</button>
-    <div class="modal-icon">💌</div><h2 id="secretTitle">say it without saying it out loud</h2>
-    <p class="form-intro">If talking feels like too much, you can write it here instead. You do not have to make it sound pretty or even make complete sense.</p>
-    <form id="secretForm">
-      <label class="field-label" for="secretMessage">what's on your mind?</label>
-      <textarea class="secret-text" id="secretMessage" name="message" maxlength="5000" required placeholder="write as much or as little as you want..."></textarea>
-
-      <span class="field-label">what do you want me to do with it?</span>
-      <div class="segment">
-        <div><input id="talkYes" type="radio" name="response_preference" value="I want to talk about it" checked><label for="talkYes">♡ I want to talk about it</label></div>
-        <div><input id="talkNo" type="radio" name="response_preference" value="I just wanted you to know"><label for="talkNo">☁ I just wanted you to know</label></div>
-      </div>
-
-      <input class="honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <div class="send-row"><button class="primary send-btn" id="sendSecret" type="submit">send this to Andrew ♡</button></div>
-      <div class="form-status" id="formStatus" aria-live="polite"></div>
-      <p class="privacy-note">This note is emailed to Andrew through FormSubmit and is not posted on this website. It is not end-to-end encrypted, so do not use it for passwords or other highly sensitive information.</p>
-    </form>
-  </div>
-</div>
-
-<div class="modal" id="harderModal" aria-hidden="true">
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="harderTitle">
-    <button class="close" data-close aria-label="Close">×</button>
-    <div class="modal-icon">💗</div><h2 id="harderTitle">still not feeling better?</h2>
-    <p class="modal-copy">Okay, rude. Try pressing the button then.</p>
-    <div class="arena" id="arena"><button class="runaway" id="runaway">still not feeling better</button></div>
-    <div class="harder" id="harder">Surely this will be easy.</div>
-    <div class="emergency" id="emergency"><b>Okay, serious one for a second.</b><br>You do not need to be cheerful for me. You do not need to explain anything before you are ready. Even on the days you feel off, quiet, overwhelmed, or impossible to cheer up, you are still the same Marina I care about. The goal is not to force you to feel better. It is just to make sure you do not forget you have someone in your corner.</div>
-  </div>
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>
+<div class="modal" id="modal" aria-hidden="true"><div class="modalCard" id="modalCard"><button class="close" id="closeBtn" aria-label="Close">×</button><div class="modalIcon" id="modalIcon">♡</div><h2 id="modalTitle"></h2><div class="modalBody" id="modalBody"></div></div></div>
+<script>
+const smileMessages=[
+"Bad day or not, you are still painfully cute. I checked the rules.",
+"You are one of the sweetest people I know, which is honestly suspicious behavior.",
+"You do not have to explain everything. I can care about you without a full PowerPoint presentation.",
+"You are always there for me, so consider this me showing up for you in the dumbest, pinkest way possible.",
+"Official diagnosis: too much stress, not enough being reminded that you are adorable.",
+"For the record, I still like you when you are grumpy. Unfortunately, there seems to be no cure.",
+"You and I bully each other recreationally, but I hope you know I would never joke about how much I appreciate you.",
+"If today has been rude to you, give me its address. I just want to talk.",
+"You do not need to be okay today. Just be Marina. That is more than enough.",
+"I hope this gets at least half a smile out of you, pretty girl. I am not greedy.",
+"You make things lighter for me more often than you probably realize.",
+"Even when talking about feelings is hard, I notice that you try. That matters to me.",
+"Current status: sweet, important, cute, and still a menace. Nothing has changed.",
+"Your brain may be having a bad day, but its opinion of you is currently rejected for lack of evidence."
+];
+const harderMessages=["Well that won't do. Let's try harder.","Oh, you're stubborn. Fine. Deploying emergency compliments.","Still trying to press it? That's actually kind of cute. Annoying, but cute.","Okay miss impossible-to-cheer-up, I see how this is going to be.","New strategy: aggressive reminder that you mean a lot to me.","You being sad is becoming personally inconvenient because I happen to like your smile.","Fine. Pulling out the serious stuff now. You did this to yourself.","You cannot catch the button, but you did successfully catch another reminder that I care about you.","At this point the button is scared of you. I respect it.","Still here? Good. Then I'm still here too."];
+const flirtyMessages=["Even in a bad mood you are still stupidly pretty. Terrible system, honestly.","I was going to be normal about you, but then you had to go and be adorable. Rude.","Your smile is kind of my favorite, so yes, I am officially requesting its return whenever it is ready.","You are cute when you are happy, cute when you are grumpy, and deeply irritating for making both true.","I hope you know I would choose talking to you over a suspicious number of productive activities.","Pretty girl privileges are currently active. You are allowed to rest."];
+const content={
+note:{icon:'✿',title:'a tiny note for you',html:`<p>You do not have to tell me what is wrong before you are ready.</p><p><strong>“I don't know,” “not right now,”</strong> or even just sitting there quietly is allowed.</p><div class="quoteBox">You have been there for me more times than you probably realize. I can be here too, even if “being here” means making you a ridiculous pink website.</div>`},
+words:{icon:'☁',title:'when words are hard',html:`<p>You do not need the perfect sentence to deserve support.</p><p>Trying counts. Changing your mind counts. Silence counts. Saying “I don't know how to explain it” counts too.</p><div class="quoteBox">You can take your time. I would rather understand you slowly than make you feel rushed into saying something you are not ready to say.</div>`},
+reasons:{icon:'♡',title:'annoying evidence that you matter',html:`<p>I have collected some extremely scientific evidence:</p><div class="tags"><span class="tag">you always show up</span><span class="tag">you actually try</span><span class="tag">your sweet heart</span><span class="tag">your smile</span><span class="tag">our stupid insults</span><span class="tag">the way we always talk after</span><span class="tag">your cute little attitude</span><span class="tag">you make things lighter</span><span class="tag">because you are you</span></div>`},
+us:{icon:'😈',title:'our completely normal bullying',html:`<p>We insult each other like it is a competitive sport, and somehow it is still one of my favorite things about us.</p><p>The important part is that underneath the jokes, <strong>we always know where the line is, we talk after, and we care.</strong></p><div class="quoteBox">So yes, I will continue calling you annoying. But you are <em>my favorite kind</em> of annoying.</div>`},
+flirty:{icon:'🌷',title:'emergency compliment',html:`<p id="flirtyText">${flirtyMessages[0]}</p><div class="modalAction"><button class="primary" id="anotherFlirty">give me another one ♡</button></div>`},
+still:{icon:'💗',title:'still not feeling better?',html:`<p>Okay, rude. Try pressing the button then.</p><div class="arena" id="arena"><button class="runaway" id="runaway">still not feeling better</button></div><div class="harder" id="harder">Surely this will be easy.</div><div class="emergency" id="emergency"><strong>Okay, serious one for a second.</strong><br>You do not need to be cheerful for me. You do not need to explain anything before you are ready. Even on the days you feel off, quiet, overwhelmed, or impossible to cheer up, you are still the same Marina I care about. The goal is not to force you to feel better. It is just to make sure you do not forget you have someone in your corner.</div>`},
+secret:{icon:'💌',title:'write something you do not feel like saying out loud',html:`<div class="secretIntro">This is for the things that are easier to type than say. You do not have to make it sound pretty or explain it perfectly. Just write whatever is in your head.</div><form class="feelForm" id="feelForm"><label for="message">what is going on?</label><textarea id="message" name="message" required maxlength="6000" placeholder="You can say as much or as little as you want..."></textarea><label>what do you want me to do with it?</label><div class="choiceWrap"><div class="choice"><input type="radio" name="preference" id="talk" value="I want to talk about it" required><label for="talk">♡ I want to talk about it</label></div><div class="choice"><input type="radio" name="preference" id="know" value="I just wanted you to know"><label for="know">☁ I just wanted you to know</label></div></div><input type="hidden" name="_subject" value="A note from Marina ♡"><input type="hidden" name="_template" value="table"><button class="primary sendBtn" type="submit">send this to Andrew ♡</button><div class="formStatus" id="formStatus"></div><div class="privacy">This sends the note privately to Andrew's email through FormSubmit. It is not posted on this page, but it is not end-to-end encrypted.</div></form>`}
+};
+const response=document.getElementById('response'),smileBtn=document.getElementById('smileBtn'),modal=document.getElementById('modal'),modalIcon=document.getElementById('modalIcon'),modalTitle=document.getElementById('modalTitle'),modalBody=document.getElementById('modalBody'),closeBtn=document.getElementById('closeBtn');
+let last=-1;
+smileBtn.addEventListener('click',()=>{let i;do{i=Math.floor(Math.random()*smileMessages.length)}while(i===last);last=i;response.textContent=smileMessages[i];response.classList.remove('pop');void response.offsetWidth;response.classList.add('pop');heartsBurst(smileBtn);smileBtn.textContent='another one ♡'});
+function openModal(key){const c=content[key];modalIcon.textContent=c.icon;modalTitle.textContent=c.title;modalBody.innerHTML=c.html;modal.classList.add('show');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';if(key==='flirty')bindFlirty();if(key==='still')bindRunaway();if(key==='secret')bindSecretForm()}
+function closeModal(){modal.classList.remove('show');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''}
+document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>{openModal(b.dataset.open);heartsBurst(b)}));closeBtn.addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+function bindFlirty(){const txt=document.getElementById('flirtyText'),btn=document.getElementById('anotherFlirty');let i=0;btn.addEventListener('click',()=>{i=(i+1)%flirtyMessages.length;txt.textContent=flirtyMessages[i];heartsBurst(btn)})}
+function bindRunaway(){const arena=document.getElementById('arena'),run=document.getElementById('runaway'),harder=document.getElementById('harder'),emergency=document.getElementById('emergency');let tries=0;function move(e){if(e)e.preventDefault();tries++;const ar=arena.getBoundingClientRect(),br=run.getBoundingClientRect();const maxX=Math.max(4,ar.width-br.width-8),maxY=Math.max(4,ar.height-br.height-8);run.style.left=(4+Math.random()*maxX)+'px';run.style.top=(4+Math.random()*maxY)+'px';run.style.transform='none';harder.textContent=harderMessages[(tries-1)%harderMessages.length];heartsBurst(run);if(tries>=6)emergency.classList.add('show')}['pointerenter','pointerdown','touchstart','focus','click'].forEach(ev=>run.addEventListener(ev,move,{passive:false}))}
+function bindSecretForm(){const form=document.getElementById('feelForm'),status=document.getElementById('formStatus');form.addEventListener('submit',async e=>{e.preventDefault();const submit=form.querySelector('button[type="submit"]');submit.disabled=true;submit.textContent='sending... ♡';status.textContent='';try{const data=new FormData(form);data.append('_captcha','false');const r=await fetch('https://formsubmit.co/ajax/Andrew.hana2000@gmail.com',{method:'POST',headers:{'Accept':'application/json'},body:data});if(!r.ok)throw new Error('send failed');const pref=data.get('preference');form.reset();status.innerHTML=pref==='I want to talk about it'?'<strong>sent ♡</strong> He will know you want to talk when you are ready.':'<strong>sent ♡</strong> He will know you just wanted him to know, so he can leave it there unless you bring it up.';submit.textContent='sent ♡';heartsBurst(submit)}catch(err){status.textContent='That did not send. Please try again in a second.';submit.disabled=false;submit.textContent='send this to Andrew ♡'}})}
+function heartsBurst(el){const r=el.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;for(let i=0;i<10;i++){const b=document.createElement('span');b.className='burst';b.textContent=i%3===0?'✿':'♡';b.style.left=cx+'px';b.style.top=cy+'px';b.style.color=i%2?'#e95f99':'#ff9fc7';b.style.setProperty('--x',(Math.random()*180-90)+'px');b.style.setProperty('--y',(-35-Math.random()*130)+'px');document.body.appendChild(b);setTimeout(()=>b.remove(),900)}}
+const bg=document.getElementById('bg');for(let i=0;i<25;i++){const f=document.createElement('span');f.className='float';f.textContent=i%5===0?'🎀':(i%3===0?'✿':'♡');f.style.left=Math.random()*100+'vw';f.style.fontSize=(14+Math.random()*18)+'px';f.style.animationDuration=(10+Math.random()*12)+'s';f.style.animationDelay=(-Math.random()*18)+'s';bg.appendChild(f)}
+</script>
+</body></html>
