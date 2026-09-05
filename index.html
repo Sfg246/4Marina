@@ -1,490 +1,89 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#fff5f7" />
-  <title>A tiny corner of the internet for Marina</title>
-  <style>
-    :root {
-      --bg1: #fff7fb;
-      --bg2: #fff1f5;
-      --bg3: #fff8ef;
-      --card: rgba(255, 255, 255, 0.82);
-      --text: #4d3742;
-      --muted: #806671;
-      --pink: #ef8fb0;
-      --pink-dark: #cc6288;
-      --line: rgba(204, 98, 136, 0.18);
-      --shadow: 0 20px 60px rgba(160, 89, 119, 0.18);
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Inter, ui-rounded, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(255, 215, 230, 0.85), transparent 30%),
-        radial-gradient(circle at top right, rgba(255, 236, 210, 0.9), transparent 28%),
-        linear-gradient(135deg, var(--bg1), var(--bg2) 50%, var(--bg3));
-      overflow-x: hidden;
-    }
-
-    .sparkles, .hearts {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .sparkle, .heart {
-      position: absolute;
-      opacity: 0.7;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-    }
-
-    .sparkle {
-      color: rgba(255,255,255,0.95);
-      font-size: 14px;
-      animation-name: floatSparkle;
-    }
-
-    .heart {
-      color: rgba(239, 143, 176, 0.55);
-      font-size: 18px;
-      animation-name: floatHeart;
-    }
-
-    @keyframes floatHeart {
-      from { transform: translateY(110vh) scale(0.8) rotate(0deg); opacity: 0; }
-      10% { opacity: .7; }
-      to { transform: translateY(-15vh) scale(1.2) rotate(30deg); opacity: 0; }
-    }
-
-    @keyframes floatSparkle {
-      from { transform: translateY(105vh) translateX(0) scale(.8); opacity: 0; }
-      15% { opacity: .8; }
-      to { transform: translateY(-10vh) translateX(18px) scale(1.2); opacity: 0; }
-    }
-
-    .wrap {
-      position: relative;
-      z-index: 1;
-      width: min(920px, calc(100% - 28px));
-      margin: 0 auto;
-      padding: 48px 0 70px;
-    }
-
-    .top-pill {
-      width: fit-content;
-      margin: 0 auto 18px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.65);
-      border: 1px solid rgba(255,255,255,0.8);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(143, 90, 113, 0.10);
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .card {
-      position: relative;
-      background: var(--card);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.9);
-      border-radius: 30px;
-      box-shadow: var(--shadow);
-      padding: 34px 24px 26px;
-      overflow: hidden;
-    }
-
-    .card::before,
-    .card::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(8px);
-      opacity: .55;
-    }
-
-    .card::before {
-      width: 180px;
-      height: 180px;
-      background: rgba(255, 221, 234, 0.75);
-      top: -70px;
-      right: -35px;
-    }
-
-    .card::after {
-      width: 130px;
-      height: 130px;
-      background: rgba(255, 242, 213, 0.75);
-      bottom: -35px;
-      left: -25px;
-    }
-
-    .mini-hearts {
-      text-align: center;
-      font-size: 1.3rem;
-      letter-spacing: 8px;
-      margin-bottom: 10px;
-      animation: pulse 2.4s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%,100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    h1 {
-      text-align: center;
-      font-size: clamp(2.35rem, 7vw, 4.4rem);
-      line-height: 1.02;
-      margin: 6px 0 12px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .subtitle {
-      text-align: center;
-      font-size: 1.05rem;
-      color: var(--muted);
-      margin: 0 auto 24px;
-      max-width: 620px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .message {
-      position: relative;
-      z-index: 1;
-      max-width: 720px;
-      margin: 0 auto;
-      font-size: 1.08rem;
-      line-height: 1.8;
-      text-align: center;
-    }
-
-    .button-row {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin: 28px 0 18px;
-      position: relative;
-      z-index: 1;
-    }
-
-    button {
-      border: none;
-      border-radius: 999px;
-      padding: 14px 20px;
-      font-size: 0.98rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
-    }
-
-    button:hover { transform: translateY(-2px) scale(1.01); }
-    button:active { transform: translateY(0) scale(.98); }
-
-    .primary {
-      background: linear-gradient(180deg, #ffb4ce, #ef8fb0);
-      color: white;
-      box-shadow: 0 14px 28px rgba(204, 98, 136, .28);
-    }
-
-    .secondary {
-      background: rgba(255,255,255,.85);
-      color: var(--pink-dark);
-      border: 1px solid rgba(204, 98, 136, .15);
-      box-shadow: 0 10px 26px rgba(164, 110, 133, .10);
-    }
-
-    .bubble {
-      position: relative;
-      z-index: 1;
-      max-width: 690px;
-      margin: 12px auto 0;
-      background: rgba(255,255,255,0.87);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 18px 18px;
-      box-shadow: 0 12px 25px rgba(160, 89, 119, 0.08);
-      text-align: center;
-      min-height: 82px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.02rem;
-      line-height: 1.6;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 22px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .tile {
-      background: rgba(255,255,255,.7);
-      border: 1px solid rgba(255,255,255,.86);
-      border-radius: 22px;
-      padding: 18px;
-      box-shadow: 0 10px 24px rgba(150, 92, 114, 0.08);
-    }
-
-    .tile h3 {
-      margin: 0 0 8px;
-      font-size: 1rem;
-    }
-
-    .tile p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.65;
-      font-size: 0.96rem;
-    }
-
-    .reasons {
-      margin-top: 22px;
-      background: linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.83));
-      border: 1px solid rgba(255,255,255,.85);
-      border-radius: 24px;
-      padding: 22px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .reasons-title {
-      margin: 0 0 14px;
-      text-align: center;
-      font-size: 1.15rem;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-    }
-
-    .chip {
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.9);
-      border: 1px solid rgba(204, 98, 136, .14);
-      color: var(--text);
-      box-shadow: 0 8px 18px rgba(161, 104, 126, .08);
-      font-size: .95rem;
-    }
-
-    .footer-note {
-      text-align: center;
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: .98rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .tiny {
-      text-align: center;
-      margin-top: 18px;
-      color: #987685;
-      font-size: .92rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .signature {
-      margin-top: 12px;
-      font-weight: 700;
-      color: var(--pink-dark);
-    }
-
-    .hidden-note {
-      margin-top: 16px;
-      padding: 16px;
-      background: rgba(255, 248, 251, 0.95);
-      border: 1px dashed rgba(204, 98, 136, .3);
-      border-radius: 20px;
-      text-align: center;
-      display: none;
-    }
-
-    .show { display: block; }
-
-    @media (max-width: 760px) {
-      .wrap { padding-top: 28px; }
-      .card { padding: 26px 16px 20px; border-radius: 24px; }
-      .grid { grid-template-columns: 1fr; }
-      .message { font-size: 1rem; }
-      .bubble { font-size: .98rem; min-height: 92px; }
-      button { width: 100%; }
-      .button-row { gap: 10px; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ffedf6">
+<title>For Marina ♡</title>
+<style>
+:root{--pink:#ef82ad;--deep:#c94f82;--ink:#4b3440;--muted:#816573;--white:rgba(255,255,255,.82);--line:rgba(201,79,130,.15)}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;font-family:Inter,ui-rounded,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at 12% 8%,#ffd4e8 0,transparent 30%),radial-gradient(circle at 90% 15%,#ffe7f2 0,transparent 27%),radial-gradient(circle at 50% 100%,#fff2d9 0,transparent 30%),linear-gradient(145deg,#fff7fb,#ffeef6 52%,#fff8f3);overflow-x:hidden}
+.bg{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}.float{position:absolute;bottom:-60px;color:rgba(239,130,173,.34);animation:up linear infinite}@keyframes up{to{transform:translateY(-120vh) rotate(30deg);opacity:0}}
+.wrap{position:relative;z-index:1;width:min(940px,calc(100% - 26px));margin:auto;padding:38px 0 70px}.pill{width:max-content;max-width:100%;margin:0 auto 15px;padding:9px 15px;border:1px solid #fff;border-radius:999px;background:rgba(255,255,255,.67);box-shadow:0 10px 28px rgba(154,82,113,.1);font-size:.9rem;color:var(--muted);text-align:center}
+.card{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.92);border-radius:30px;background:var(--white);backdrop-filter:blur(15px);box-shadow:0 24px 80px rgba(147,72,105,.17);padding:34px 25px}.card:before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-90px;top:-100px;background:#ffd8e9;filter:blur(4px);opacity:.65}.card>*{position:relative;z-index:1}
+.kicker{text-align:center;color:var(--deep);font-size:.8rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.hearts{text-align:center;letter-spacing:7px;margin:10px 0;color:var(--pink);animation:pulse 2.5s ease-in-out infinite}@keyframes pulse{50%{transform:scale(1.05)}}
+h1{text-align:center;font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.7rem,8vw,5.2rem);font-weight:500;line-height:.95;margin:8px 0 15px}h1 span{color:var(--deep)}
+.sub{text-align:center;max-width:680px;margin:0 auto;color:var(--muted);font-size:1.04rem;line-height:1.65}.letter{max-width:760px;margin:23px auto 0;padding:21px;border-radius:23px;background:rgba(255,255,255,.72);border:1px solid var(--line);font-size:1.03rem;line-height:1.78;text-align:center}.letter strong{color:var(--deep)}
+.actions{display:flex;justify-content:center;gap:11px;flex-wrap:wrap;margin:23px 0 13px}button{font:inherit;font-weight:800;border:0;border-radius:999px;padding:14px 19px;cursor:pointer;transition:.18s ease}.primary{color:white;background:linear-gradient(135deg,#ed79a7,#f4abc7);box-shadow:0 12px 25px rgba(201,79,130,.27)}.secondary{color:var(--deep);background:white;border:1px solid var(--line);box-shadow:0 9px 22px rgba(145,78,107,.08)}button:hover{transform:translateY(-2px)}button:active{transform:scale(.98)}
+.response{max-width:690px;min-height:76px;margin:10px auto 0;border-radius:21px;padding:16px 18px;background:rgba(255,255,255,.8);border:1px solid var(--line);display:grid;place-items:center;text-align:center;line-height:1.58;color:#684b59;transition:.25s}.response.pop{animation:pop .32s ease}@keyframes pop{50%{transform:scale(1.025)}}
+.note{display:none;max-width:700px;margin:13px auto 0;padding:17px;border-radius:20px;background:#fff7fb;border:1px dashed #eca1bf;text-align:center;line-height:1.65}.note.show{display:block;animation:fade .3s ease}@keyframes fade{from{opacity:0;transform:translateY(7px)}}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:20px}.mini{padding:18px;border-radius:21px;background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.9);box-shadow:0 10px 24px rgba(150,82,111,.07)}.mini h3{margin:0 0 7px;font-size:1rem}.mini p{margin:0;color:var(--muted);line-height:1.55;font-size:.94rem}
+.reasons{margin-top:17px;padding:20px;border-radius:23px;background:rgba(255,255,255,.68);border:1px solid white}.reasons h2{text-align:center;font-size:1.08rem;margin:0 0 13px}.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:9px}.chip{padding:9px 12px;border-radius:999px;background:white;border:1px solid var(--line);font-size:.9rem;box-shadow:0 7px 17px rgba(150,78,108,.06)}
+.challenge{margin-top:19px;padding:20px;border-radius:24px;background:linear-gradient(145deg,rgba(255,244,250,.95),rgba(255,255,255,.84));border:1px solid var(--line);text-align:center}.challenge h2{font-size:1.15rem;margin:0 0 5px}.challenge>p{color:var(--muted);margin:0 auto 14px;line-height:1.5}.arena{position:relative;height:165px;border-radius:19px;background:repeating-linear-gradient(135deg,rgba(239,130,173,.055),rgba(239,130,173,.055) 10px,rgba(255,255,255,.42) 10px,rgba(255,255,255,.42) 20px);border:1px dashed rgba(201,79,130,.25);overflow:hidden}.runaway{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;background:#fff;color:var(--deep);border:1px solid #efabc5;box-shadow:0 9px 20px rgba(157,78,113,.13);touch-action:none}.harder{max-width:670px;margin:13px auto 0;min-height:58px;padding:13px;border-radius:18px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;color:#694c59;line-height:1.5}.emergency{display:none;margin:15px auto 0;max-width:690px;padding:18px;border-radius:21px;background:linear-gradient(135deg,#fff,#fff0f7);border:1px solid #efb3ca;line-height:1.65}.emergency.show{display:block;animation:fade .35s ease}.emergency b{color:var(--deep)}
+.footer{text-align:center;margin-top:20px;color:#927180;font-size:.91rem;line-height:1.6}.sign{margin-top:8px;color:var(--deep);font-weight:800}.tinytease{font-size:.82rem;margin-top:7px;color:#aa8897}
+.burst{position:fixed;z-index:10;pointer-events:none;animation:burst 850ms ease forwards}@keyframes burst{to{transform:translate(var(--x),var(--y)) scale(1.6) rotate(18deg);opacity:0}}
+@media(max-width:720px){.wrap{padding-top:24px}.card{padding:27px 15px 22px;border-radius:25px}.grid{grid-template-columns:1fr}.actions button{width:100%}.arena{height:180px}.letter{padding:17px}.pill{font-size:.82rem}}
+</style>
 </head>
 <body>
-  <div class="hearts" id="hearts"></div>
-  <div class="sparkles" id="sparkles"></div>
-
-  <main class="wrap">
-    <div class="top-pill">a tiny cute corner of the internet made just for you ♡</div>
-
-    <section class="card">
-      <div class="mini-hearts">♡ ✿ ♡ ✿ ♡</div>
-      <h1>Hey, Marina.</h1>
-      <p class="subtitle">This page has exactly one job: to be soft, sweet, and hopefully steal at least one tiny smile from you.</p>
-
-      <div class="message">
-        I know this week has been heavy. You don’t have to explain it, talk about it, or pretend you’re okay for anybody.
-        I just wanted to make you something small that feels a little warm and a little cute, so you have one tiny reminder that you matter,
-        you’re cared about, and you don’t have to carry everything alone.
-      </div>
-
-      <div class="button-row">
-        <button class="primary" id="smileBtn">I could use a tiny smile ♡</button>
-        <button class="secondary" id="noteBtn">open a tiny note ✿</button>
-      </div>
-
-      <div class="bubble" id="bubble">Press the button whenever you want a small dose of cute energy.</div>
-
-      <div class="hidden-note" id="hiddenNote">
-        Just in case today is being rude to you: you are still lovely, still important, and still deserve gentleness.
-      </div>
-
-      <div class="grid">
-        <div class="tile">
-          <h3>☁ little reminder</h3>
-          <p>You do not have to be in a perfect mood to be loved, cared about, or thought of fondly.</p>
-        </div>
-        <div class="tile">
-          <h3>🫶 emergency softness</h3>
-          <p>If your week has been mean, this is your official permission slip to rest, breathe, and be a little babied.</p>
-        </div>
-        <div class="tile">
-          <h3>🌷 important news</h3>
-          <p>Even on messy days, you still bring a lot of light with you. Yes, this is me being annoyingly sincere.</p>
-        </div>
-      </div>
-
-      <div class="reasons">
-        <h2 class="reasons-title">tiny reasons you’re easy to care about ♡</h2>
-        <div class="chips">
-          <span class="chip">your smile</span>
-          <span class="chip">your heart</span>
-          <span class="chip">your energy</span>
-          <span class="chip">the way you matter to people</span>
-          <span class="chip">your cute little existence</span>
-          <span class="chip">because you’re you</span>
-        </div>
-      </div>
-
-      <p class="footer-note">No reply needed. Really. This was only made to make your day feel a little less heavy.</p>
-      <div class="tiny">made with care, soft colors, and a mildly unreasonable amount of affection ♡
-        <div class="signature">- from someone thinking about you</div>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    const messages = [
-      "You deserve at least one genuinely soft moment today, so here’s one.",
-      "Tiny reminder: bad weeks do not get to decide how lovely you are.",
-      "If I could fight your stress for you, I would at least yell at it dramatically.",
-      "You are way too cute to be carrying this much stress around.",
-      "This is a formal notice that you deserve snacks, rest, and something comforting.",
-      "If today has been rude to you, I’m officially against it.",
-      "You don’t need to have the right words. Existing is enough today.",
-      "A small fact: the world is better with you in it. I checked.",
-      "Consider this your soft little reminder that someone cares about you a lot.",
-      "If nothing else, let this page sit here and be gentle with you for a minute.",
-      "You are still you underneath the stress, and that version of you is pretty wonderful.",
-      "Sending you a tiny internet hug with absolutely no pressure attached to it."
-    ];
-
-    const bubble = document.getElementById('bubble');
-    const smileBtn = document.getElementById('smileBtn');
-    const noteBtn = document.getElementById('noteBtn');
-    const hiddenNote = document.getElementById('hiddenNote');
-    const hearts = document.getElementById('hearts');
-    const sparkles = document.getElementById('sparkles');
-
-    function spawnBackground() {
-      for (let i = 0; i < 18; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.textContent = Math.random() > 0.5 ? '♡' : '♥';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = (10 + Math.random() * 12) + 's';
-        heart.style.animationDelay = (Math.random() * 12) + 's';
-        heart.style.fontSize = (14 + Math.random() * 16) + 'px';
-        hearts.appendChild(heart);
-      }
-
-      for (let i = 0; i < 18; i++) {
-        const sparkle = document.createElement('div');
-        sparkle.className = 'sparkle';
-        sparkle.textContent = Math.random() > 0.5 ? '✦' : '✧';
-        sparkle.style.left = Math.random() * 100 + 'vw';
-        sparkle.style.animationDuration = (12 + Math.random() * 10) + 's';
-        sparkle.style.animationDelay = (Math.random() * 10) + 's';
-        sparkle.style.fontSize = (12 + Math.random() * 8) + 'px';
-        sparkles.appendChild(sparkle);
-      }
-    }
-
-    function burst() {
-      for (let i = 0; i < 16; i++) {
-        const el = document.createElement('div');
-        el.textContent = Math.random() > 0.4 ? '♡' : '✿';
-        el.style.position = 'fixed';
-        el.style.left = '50%';
-        el.style.top = '58%';
-        el.style.transform = 'translate(-50%, -50%)';
-        el.style.pointerEvents = 'none';
-        el.style.zIndex = '3';
-        el.style.fontSize = (16 + Math.random() * 16) + 'px';
-        el.style.opacity = '1';
-        el.style.transition = 'transform 900ms ease, opacity 900ms ease';
-        document.body.appendChild(el);
-
-        const x = (Math.random() - 0.5) * 240;
-        const y = (Math.random() - 0.8) * 220;
-
-        requestAnimationFrame(() => {
-          el.style.transform = `translate(${x}px, ${y}px) scale(${0.8 + Math.random() * 1.1})`;
-          el.style.opacity = '0';
-        });
-
-        setTimeout(() => el.remove(), 950);
-      }
-    }
-
-    smileBtn.addEventListener('click', () => {
-      const pick = messages[Math.floor(Math.random() * messages.length)];
-      bubble.textContent = pick;
-      burst();
-    });
-
-    noteBtn.addEventListener('click', () => {
-      hiddenNote.classList.toggle('show');
-      noteBtn.textContent = hiddenNote.classList.contains('show') ? 'hide tiny note ✿' : 'open a tiny note ✿';
-      burst();
-    });
-
-    spawnBackground();
-  </script>
-</body>
-</html>
+<div class="bg" id="bg"></div>
+<main class="wrap">
+<div class="pill">a very pink little safe-ish corner of the internet, made specifically for Marina ♡</div>
+<section class="card">
+<div class="kicker">for the days that feel a little too heavy</div>
+<div class="hearts">♡ ✿ ♡ ✿ ♡</div>
+<h1>Hey, <span>Marina.</span></h1>
+<p class="sub">You do not have to magically feel better just because you opened this. This page is only here to sit with you for a minute and maybe annoy one tiny smile out of you.</p>
+<div class="letter">I know talking about how you feel is not always easy for you, even when you <strong>really are trying</strong>. You never owe anyone a perfect explanation. I also hope you know how much I notice the other side of you too: you are genuinely one of the sweetest people I know, and you are always there for me when I need you. We can insult each other like it is an Olympic sport and then somehow end up laughing about it five minutes later, but underneath all of that, I care about you a lot. So when your brain is being mean to you, this is your reminder that you are cared about, appreciated, and, unfortunately for you, <strong>pretty damn easy to adore.</strong></div>
+<div class="actions"><button class="primary" id="smileBtn">I could use a tiny smile ♡</button><button class="secondary" id="noteBtn">open a tiny note ✿</button></div>
+<div class="response" id="response">Press the pink button. I promise the page only bites a little.</div>
+<div class="note" id="note">You do not have to tell me what is wrong before you are ready. “I don't know,” “not right now,” or even just sitting there quietly is allowed. You have been there for me more times than you probably realize. I can be here too, even if “being here” just means making you a ridiculous pink website.</div>
+<div class="grid">
+<div class="mini"><h3>☁ when words are hard</h3><p>You do not need the perfect sentence. Trying counts. Silence can count too.</p></div>
+<div class="mini"><h3>🫶 important evidence</h3><p>You are one of the sweetest people I know. Yes, even when you are being mean to me for entertainment.</p></div>
+<div class="mini"><h3>🌷 mildly flirty fact</h3><p>Being in a bad mood does not make you any less cute. Very inconvenient for you, I know.</p></div>
+</div>
+<div class="reasons"><h2>tiny reasons you are ridiculously easy to care about ♡</h2><div class="chips"><span class="chip">you always show up</span><span class="chip">you actually try</span><span class="chip">your sweet heart</span><span class="chip">your smile</span><span class="chip">our stupid insults</span><span class="chip">the way we can talk after</span><span class="chip">your cute little attitude</span><span class="chip">because you are you</span></div></div>
+<div class="challenge"><h2>still not feeling better?</h2><p>Okay, rude. Try pressing the button then.</p><div class="arena" id="arena"><button class="runaway" id="runaway">still not feeling better</button></div><div class="harder" id="harder">Surely this will be easy.</div><div class="emergency" id="emergency"><b>Okay, serious one for a second.</b><br>You do not need to be cheerful for me. You do not need to explain anything before you are ready. I just want this to remind you that even on the days you feel off, quiet, overwhelmed, or impossible to cheer up, you are still the same Marina I care about. The goal is not to force you to feel better. It is just to make sure you do not forget you have someone in your corner.</div></div>
+<div class="footer">No reply required. No emotional essay required. You can literally just look at this, call me an idiot, and continue with your day.<div class="sign">from someone who cares about you a whole lot ♡</div><div class="tinytease">and yes, you are still annoying. balance is important.</div></div>
+</section></main>
+<script>
+const smileMessages=[
+"Bad day or not, you are still painfully cute. I checked the rules.",
+"You are one of the sweetest people I know, which is honestly suspicious behavior.",
+"You do not have to explain everything. I can care about you without a full PowerPoint presentation.",
+"You are always there for me, so consider this me showing up for you in the dumbest, pinkest way possible.",
+"Official diagnosis: too much stress, not enough being reminded that you are adorable.",
+"For the record, I still like you when you are grumpy. Unfortunately, there seems to be no cure.",
+"You and I bully each other recreationally, but I hope you know I would never joke about how much I appreciate you.",
+"If today has been rude to you, give me its address. I just want to talk.",
+"You do not need to be okay today. Just be Marina. That is more than enough.",
+"I hope this gets at least half a smile out of you, pretty girl. I am not greedy.",
+"You make things lighter for me more often than you probably realize.",
+"Even when talking about feelings is hard, I notice that you try. That matters to me.",
+"Current status: sweet, important, cute, and still a menace. Nothing has changed.",
+"Your brain may be having a bad day, but its opinion of you is currently rejected for lack of evidence."
+];
+const harderMessages=[
+"Well that won't do. Let's try harder.",
+"Oh, you're stubborn. Fine. Deploying emergency compliments.",
+"Still trying to press it? That's actually kind of cute. Annoying, but cute.",
+"Okay miss impossible-to-cheer-up, I see how this is going to be.",
+"New strategy: aggressive reminder that you mean a lot to me.",
+"You being sad is becoming personally inconvenient because I happen to like your smile.",
+"Fine. Pulling out the serious stuff now. You did this to yourself.",
+"You cannot catch the button, but you did successfully catch another reminder that I care about you.",
+"At this point the button is scared of you. I respect it.",
+"Still here? Good. Then I'm still here too."
+];
+const response=document.getElementById('response'),smileBtn=document.getElementById('smileBtn'),noteBtn=document.getElementById('noteBtn'),note=document.getElementById('note');
+let last=-1;smileBtn.addEventListener('click',()=>{let i;do{i=Math.floor(Math.random()*smileMessages.length)}while(i===last);last=i;response.textContent=smileMessages[i];response.classList.remove('pop');void response.offsetWidth;response.classList.add('pop');heartsBurst(smileBtn);smileBtn.textContent='another one ♡'});
+noteBtn.addEventListener('click',()=>{note.classList.toggle('show');noteBtn.textContent=note.classList.contains('show')?'hide the tiny note ✿':'open a tiny note ✿';heartsBurst(noteBtn)});
+const arena=document.getElementById('arena'),run=document.getElementById('runaway'),harder=document.getElementById('harder'),emergency=document.getElementById('emergency');let tries=0;
+function moveRunaway(e){if(e)e.preventDefault();tries++;const ar=arena.getBoundingClientRect(),br=run.getBoundingClientRect();const maxX=Math.max(4,ar.width-br.width-8),maxY=Math.max(4,ar.height-br.height-8);run.style.left=(4+Math.random()*maxX)+'px';run.style.top=(4+Math.random()*maxY)+'px';run.style.transform='none';harder.textContent=harderMessages[(tries-1)%harderMessages.length];harder.classList.remove('pop');void harder.offsetWidth;harder.classList.add('pop');heartsBurst(run);if(tries>=6)emergency.classList.add('show')}
+['pointerenter','pointerdown','touchstart','focus','click'].forEach(evt=>run.addEventListener(evt,moveRunaway,{passive:false}));
+function heartsBurst(el){const r=el.getBoundingClientRect();for(let i=0;i<10;i++){const s=document.createElement('span');s.className='burst';s.textContent=i%3?'♡':'✿';s.style.left=(r.left+r.width/2)+'px';s.style.top=(r.top+r.height/2)+'px';s.style.color=i%2?'#e875a4':'#c94f82';s.style.setProperty('--x',(Math.random()*180-90)+'px');s.style.setProperty('--y',(-40-Math.random()*120)+'px');document.body.appendChild(s);setTimeout(()=>s.remove(),900)}}
+const bg=document.getElementById('bg');for(let i=0;i<22;i++){const f=document.createElement('span');f.className='float';f.textContent=i%3?'♡':'✦';f.style.left=Math.random()*100+'vw';f.style.fontSize=(12+Math.random()*18)+'px';f.style.animationDuration=(10+Math.random()*12)+'s';f.style.animationDelay=(-Math.random()*18)+'s';bg.appendChild(f)}
+</script>
+</body></html>
